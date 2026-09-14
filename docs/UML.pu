@@ -1,0 +1,86 @@
+@startuml
+
+class Keyboard {
+    - languageLayout: String
+    - size: int
+    - region: String
+    - material: Material
+    - isCableIncluded: boolean
+    - isWireless: boolean
+    - additionalLanguageLayout: String
+    - isBacklight: boolean
+    - screen: boolean
+    - additionalFeatures: boolean
+
+    + getLanguageLayout(): String
+    + getSize(): int
+    + getRegion(): String
+    + getMaterial(): Material
+    + isCableIncluded(): boolean
+    + isWireless(): boolean
+    + getAdditionalLanguageLayout(): String
+    + isBacklight(): boolean
+    + hasScreen(): boolean
+    + hasAdditionalFeatures(): boolean
+}
+
+
+
+
+class Material {
+    - type: String
+    - color: String
+    - isRecyclable: boolean
+
+    + Material(type: String, color: String, isRecyclable: boolean)
+
+    + getType(): String
+    + getColor(): String
+    + isRecyclable(): boolean
+    + setType(type: String): void
+    + setColor(color: String): void
+    + setRecyclable(isRecyclable: boolean): void
+}
+
+class Keyboard {
+    - languageLayout: String
+    - size: int
+    - region: String
+    - material: Material
+    - isCableIncluded: boolean
+    - isWireless: boolean
+    - isBacklight: boolean
+    - screen: boolean
+}
+
+class "Keyboard.Builder" as Builder {
+    + reset(): Builder
+    + setLanguageLayout(languageLayout: String): Builder
+    + setSize(size: int): Builder
+    + setRegion(region: String): Builder
+    + setMaterial(material: Material): Builder
+    + setCableIncluded(value: boolean): Builder
+    + setWireless(value: boolean): Builder
+    + setBacklight(value: boolean): Builder
+    + setScreen(value: boolean): Builder
+    + build(): Keyboard
+}
+
+class KeyboardDirector {
+    + constructOfficeKeyboard(builder: Builder): void
+    + constructGamingKeyboard(builder: Builder): void
+    + constructBestKeyboard(builder: Builder): void
+}
+
+
+
+class Material{
+
+}
+
+Keyboard *--> Material
+KeyboardDirector --> Builder
+Builder --> Keyboard
+
+@enduml
+```
