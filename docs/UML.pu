@@ -42,16 +42,6 @@ class Material {
     + setRecyclable(isRecyclable: boolean): void
 }
 
-class Keyboard {
-    - languageLayout: String
-    - size: int
-    - region: String
-    - material: Material
-    - isCableIncluded: boolean
-    - isWireless: boolean
-    - isBacklight: boolean
-    - screen: boolean
-}
 
 class "Keyboard.Builder" as Builder {
     + reset(): Builder
