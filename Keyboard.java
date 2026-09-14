@@ -97,6 +97,20 @@ public class Keyboard{
         public Builder() {
         }
 
+        public Builder reset() {
+            this.language_layout = null;
+            this.size = 0;
+            this.region = null;
+            this.material = null;
+            this.is_cable_included = false;
+            this.is_wireless = false;
+            this.adtional_language_layout = null;
+            this.is_backlight = false;
+            this.screen = false;
+            this.addtional_features = false;
+            return this;
+        }
+
         public Builder setLanguageLayout(String language_layout) {
             this.language_layout = language_layout;
             return this;
