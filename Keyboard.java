@@ -1,5 +1,5 @@
 public class Keyboard{
-    private final String language_layouut;
+    private final String language_layout;
     private final int size;
     private final String region; // ANSI, ISO, JIS, etc.
     private final Material material;
@@ -12,7 +12,17 @@ public class Keyboard{
     private final boolean addtional_features;
 
     public Keyboard(Builder builder) {
-        this.language_layouut = builder.language_layouut;
+        if(builder.language_layout == null || builder.size <= 0 || builder.region == null || builder.material == null) {
+            throw new IllegalArgumentException("Language layout, size, region, and material must be provided.");
+        } else if(builder.language_layout == builder.adtional_language_layout) {
+            throw new IllegalArgumentException("Primary and additional language layouts cannot be the same.");
+        } else if ((builder.language_layout == "jp" || builder.adtional_language_layout == "jp") && builder.region != "JIS") {
+            throw new IllegalArgumentException("Japanese layout requires JIS region.");
+        } 
+
+
+
+        this.language_layout = builder.language_layout;
         this.size = builder.size;
         this.region = builder.region;
         this.material = builder.material;
@@ -25,7 +35,7 @@ public class Keyboard{
     }
 
     public String getLanguageLayout() {
-        return language_layouut;
+        return language_layout;
     }
     public int getSize() {
         return size; 
@@ -58,7 +68,7 @@ public class Keyboard{
     @Override 
     public String toString() {
             return "Keyboard.Builder{" +
-                    "language_layouut='" + language_layouut + '\'' +
+                    "language_layout='" + language_layout + '\'' +
                     ", size=" + size +
                     ", region='" + region + '\'' +
                     ", material=" + material +
@@ -73,7 +83,7 @@ public class Keyboard{
 
 
     public static class Builder {
-        private String language_layouut;
+        private String language_layout;
         private int size;
         private String region;
         private Material material;
@@ -87,8 +97,8 @@ public class Keyboard{
         public Builder() {
         }
 
-        public Builder setLanguageLayout(String language_layouut) {
-            this.language_layouut = language_layouut;
+        public Builder setLanguageLayout(String language_layout) {
+            this.language_layout = language_layout;
             return this;
         }
 
